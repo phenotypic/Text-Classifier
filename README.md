@@ -2,6 +2,16 @@
 
 This script is a simple implementation of a text classifier which leverages machine learning.
 
+Example use cases:
+
+- Sentiment Analysis: classify texts into positive, negative, or neutral categories
+- Spam Detection: categorize emails or messages as "spam" or "not spam"
+- Topic Classification: categorise text documents into predefined topics or categories
+- Language Detection: detect the language of a given text
+- Censorship: detect and filter out innapropriate messages
+- Authorship Attribution: determine the author of a text from a set of possible authors
+- Intent Classification: determine what a user wants to achieve based on their input
+
 ## Usage
 
 Download with:
