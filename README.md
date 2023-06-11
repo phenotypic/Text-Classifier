@@ -8,7 +8,7 @@ Example use cases:
 - Spam Detection: categorize emails or messages as "spam" or "not spam"
 - Topic Classification: categorise text documents into predefined topics or categories
 - Language Detection: detect the language of a given text
-- Censorship: detect and filter out innapropriate messages
+- Censorship: detect and filter out inappropriate messages
 - Authorship Attribution: determine the author of a text from a set of possible authors
 - Intent Classification: determine what a user wants to achieve based on their input
 
@@ -27,7 +27,7 @@ python3 classify.py
 
 The script expects a CSV file in the same directory named `input.csv`.
 
-The CSV file should contain the columns `label` and `text`. For example, if you were training a model for sentiment analysis, your CSV would look something like this (assuming `0` represents negative sentiment, and `1` represents positive sentiment):
+The CSV file should contain the columns `label` and `text`. For example, if you were training a classifier for sentiment analysis, your CSV would look something like this (assuming `0` represents negative sentiment, and `1` represents positive sentiment):
 
 ```
 label,text
