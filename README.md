@@ -1,6 +1,6 @@
 # Text-Classifier
 
-This script is a simple implementation of a text classifier which leverages machine learning.
+This script trains a machine learning model to classify text into categories.
 
 Example use cases:
 
