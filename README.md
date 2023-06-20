@@ -1,8 +1,10 @@
 # Text-Classifier
 
-This script trains a machine learning model to classify text into categories.
+This script trains a machine-learning model to classify text into categories. 
 
-Example use cases:
+Once trained, the model can be used to predict categories for unseen text.
+
+### Example use cases:
 
 - Sentiment Analysis: classify texts into positive, negative, or neutral categories
 - Spam Detection: categorize emails or messages as "spam" or "not spam"
@@ -14,34 +16,74 @@ Example use cases:
 
 ## Usage
 
-Download with:
+Clone the repository:
 ```
 git clone https://github.com/phenotypic/Text-Classifier.git
+```
+
+Change to the project directory:
+```
+cd Text-Classifier
+```
+
+Install dependencies:
+```
 pip3 install -r requirements.txt
 ```
 
-Run from the same directory with:
+Run the script:
 ```
 python3 classify.py
 ```
 
-The script expects a CSV file in the same directory named `input.csv`.
+When training a new model, the script expects a CSV file in the same directory named `train.csv`. The file should contain two columns: `label` and `text`. The `label` for each `text` object can be binary or multiclass.
 
-The CSV file should contain the columns `label` and `text`. For example, if you were training a classifier for sentiment analysis, your CSV would look something like this (assuming `0` represents negative sentiment, and `1` represents positive sentiment):
+For example, if you were training a binary model for sentiment analysis, your CSV would look something like this (assuming `0` represents negative sentiment, and `1` represents positive sentiment):
 
 ```
 label,text
-1,"Really enjoyed this book, would definitely recommend
+1,"Really enjoyed this book, would definitely recommend"
 0,"Such a boring read, avoid at all costs"
 0,"Waste of money"
 1,"10/10 excellent storyline"
 1,"A friend recommended this to me - gripping book"
 ```
 
-The script will automatically split the CSV file into training (80%) and testing (20%) data sets.
-
-After running the script, the classifier will be trained on the training data using the Logistic Regression model. It will then be evaluated against the testing data, and you will receive an accuracy score:
+Alternatively, if you were training a multiclass model for authorship attribution with three different authors (`Alice`, `Bob`, `Charlie`), your CSV would look something like this:
 
 ```
-Accuracy: 0.9191151659063925
+label,text
+Alice,"It was a blustery day, the leaves forming tempestuous maelstroms on the sidewalks, whirling in the cruel autumnal gusts"
+Bob,"Kinda chilly today. Leaves everywhere, dancing around in the wind like nobody's business"
+Charlie,"Autumn's harsh breath orchestrates a whirl of fallen foliage, conducting a symphony of seasonal decay on the city's walkways"
+Bob,"Doesn't feel too warm out. The wind's got the leaves up in a fuss, skittering all over the pavement"
+Alice,"The ferocity of the season declared itself in eddies of russet and amber, swirling relentlessly under the despotic rule of the wind"
+```
+
+Once the training data is loaded, the script will automatically split the file into training and testing sets (`80:20` split by default).
+
+After the classifier (`logistic regression` by default) has been trained, it will be evaluated against the testing data and you will receive a final accuracy score:
+
+```
+Accuracy: 0.9291151659063925
+```
+
+Now that a model has been trained, it can be used to predict the categories for unseen text. For this, the script expects a CSV file in the same directory named `input.csv`. Using the authorship attribution example, the file might look something like this:
+
+```
+text
+"Nighttime. Dark everywhere, and the moon and stars lighting up the sky"
+"The moon painted a melancholy picture against the blackened canvas of the night"
+"Under the shroud of night, the lunar orb weeps in celestial solitude, mourned by a retinue of distant suns"
+"Not a lot of light, but the moon and stars are doing their best. They sure make the night kind of beautiful"
+```
+
+The script will then output the text alongside the model's predictions to a file named `predictions.csv`. For example:
+
+```
+text,prediction
+"Nighttime. Dark everywhere, and the moon and stars lighting up the sky",Bob
+"The moon painted a melancholy picture against the blackened canvas of the night",Alice
+"Under the shroud of night, the lunar orb weeps in celestial solitude, mourned by a retinue of distant suns",Charlie
+"Not a lot of light, but the moon and stars are doing their best. They sure make the night kind of beautiful",Bob
 ```
