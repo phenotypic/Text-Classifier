@@ -36,6 +36,13 @@ Run the script:
 python3 classify.py
 ```
 
+Here are some flags you can add:
+
+| Flag | Description |
+| --- | --- |
+| `-m <model>` | Model: choose a model (defaults to `LogisticRegression`): `LogisticRegression`, `MultinomialNB`, `DecisionTreeClassifier`, `LinearSVC`, `RandomForestClassifier`, `GradientBoostingClassifier`, `KNeighborsClassifier`, `AdaBoostClassifier`, `MLPClassifier` |
+| `-s <split>` | Split: define custom test set size (default: `0.2`) |
+
 When training a new model, the script expects a CSV file in the same directory named `train.csv`. The file should contain two columns: `label` and `text`. The `label` for each `text` object can be binary or multiclass.
 
 For example, if you were training a binary model for sentiment analysis, your CSV would look something like this (assuming `0` represents negative sentiment, and `1` represents positive sentiment):
@@ -60,9 +67,9 @@ Bob,"Doesn't feel too warm out. The wind's got the leaves up in a fuss, skitteri
 Alice,"The ferocity of the season declared itself in eddies of russet and amber, swirling relentlessly under the despotic rule of the wind"
 ```
 
-Once the training data is loaded, the script will automatically split the file into training and testing sets (`80:20` split by default).
+Once the training data is loaded, the script will automatically split the file into training and testing sets.
 
-After the classifier (`logistic regression` by default) has been trained, it will be evaluated against the testing data and you will receive a final accuracy score:
+After the classifier has been trained, it will be evaluated against the testing data and you will receive a final accuracy score:
 
 ```
 Accuracy: 0.9291151659063925
